@@ -52,7 +52,7 @@ void main() {
 }
 ```
 
-Also, there is one example project in example folder.
+Demo app can be found in the [`example/`](https://github.com/senpaiburado/gtext/tree/main/example) folder.
 
 ## Additional information
 
