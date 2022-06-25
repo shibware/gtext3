@@ -4,12 +4,20 @@ import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:translator/translator.dart';
 
+/// Wraper of Text widget that can translate its text data.
 class GText extends StatefulWidget {
   static bool _enabled = true;
   static String? _from;
   static String _to = 'en';
   static bool _enableCaching = true;
 
+  /// init function is used to set global language of translations and to tell app if it needs to cache data
+  ///
+  /// @required [to] - language which will used for translations. Default: 'en'
+  ///
+  /// @required [enableCaching] - enable or disable translations caching. Default: true
+  ///
+  /// [from] - language that text will be translated from. It's optional because the translator detects it automatically.
   static void init(
       {String? from, required String to, required bool enableCaching}) {
     _from = from;
@@ -17,6 +25,7 @@ class GText extends StatefulWidget {
     _enableCaching = enableCaching;
   }
 
+  /// Enable / disable translate functions. In case it's disabled, GText will render non-translated text.
   static void setEnabled(bool isEnabled) {
     _enabled = isEnabled;
   }
@@ -36,6 +45,11 @@ class GText extends StatefulWidget {
   final TextWidthBasis? textWidthBasis;
   final TextHeightBehavior? textHeightBehavior;
 
+  /// GText constructor which output is Text widget with translated text.
+  ///
+  /// [data] - text
+  ///
+  /// All other arguments are the same as for Text widget.
   const GText(this.data,
       {Key? key,
       this.toLang,

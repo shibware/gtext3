@@ -1,5 +1,5 @@
 name: gtext
-description: Wrapper for Text widget that translates its text
+description: Wrapper for Text widget that translates its text. This library can reduce development time for small projects and, in some cases, in medium ones. Caching translations saves performance, so first launch is a bit hard, but next will be fast.
 version: 0.0.1
 repository: https://github.com/senpaiburado/gtext
 
