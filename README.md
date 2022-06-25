@@ -26,7 +26,7 @@ In your pubspec.yaml file within your Flutter Project:
 
 ```yaml
 dependencies:
-  gtext: ^0.0.2
+  gtext: ^0.0.3
 ```
 
 ## Usage
