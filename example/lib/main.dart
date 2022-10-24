@@ -38,11 +38,12 @@ class _MyHomePageState extends State<MyHomePage> {
   List<GText> items = [];
 
   void handleApply() {
+    final language = languageController.text.trim();
+
     items.add(
       GText(
         textController.text,
-        toLang:
-            languageController.text.isEmpty ? null : languageController.text,
+        toLang: language.isEmpty ? null : language,
       ),
     );
 
