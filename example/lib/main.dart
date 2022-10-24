@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -31,38 +32,76 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final textController = TextEditingController();
+  final languageController = TextEditingController();
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  List<GText> items = [];
+
+  void handleApply() {
+    items.add(
+      GText(
+        textController.text,
+        toLang:
+            languageController.text.isEmpty ? null : languageController.text,
+      ),
+    );
+
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    textController.dispose();
+    languageController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const GText("Тест приложения"),
-            const GText(
-              'You have pushed the button this many times:',
-              toLang: 'zh-cn',
+      appBar: AppBar(
+        title: Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: textController,
+                style: const TextStyle(color: Colors.white),
+                decoration: const InputDecoration(
+                  hintText: "Type text",
+                ),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            const SizedBox(width: 25),
+            Expanded(
+              child: TextField(
+                controller: languageController,
+                style: const TextStyle(color: Colors.white),
+                decoration: const InputDecoration(
+                  hintText: "Type language code",
+                ),
+              ),
             ),
           ],
         ),
+        actions: [
+          ElevatedButton(
+            onPressed: handleApply,
+            child: const Text("Add"),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const GText("Increment"),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          final item = items.elementAt(index);
+
+          return ListTile(
+            leading: const Icon(Icons.translate),
+            title: item,
+            subtitle: item.toLang is String ? Text(item.toLang!) : null,
+          );
+        },
+      ),
     );
   }
 }
