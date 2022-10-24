@@ -224,9 +224,7 @@ class GText extends StatelessWidget {
   /// If `toLang` is not set, it will translate to global language (default: 'en')
   ///
   /// Args:
-  ///
   ///  -  __text__ (_String_): The text to be translated.
-  ///
   ///  - __toLang__ (_String?_): The language you want to translate to.
   ///
   /// Returns:
