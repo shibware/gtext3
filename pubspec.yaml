@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.0.15
-  translator: ^0.1.7
+  translator: ^1.0.0
 
 dev_dependencies:
   flutter_test:
